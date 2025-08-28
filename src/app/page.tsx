@@ -492,10 +492,19 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.2, rootMargin: "0px 0px -20% 0px" }
     );
 
     sections.forEach((sec) => io.observe(sec));
+
+    // Immediately activate sections already in view on mount (helps mobile small viewports)
+    sections.forEach((sec) => {
+      const rect = sec.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top < vh * 0.8 && rect.bottom > 0) {
+        activate(sec);
+      }
+    });
 
     return () => io.disconnect();
   }, []);
@@ -788,7 +797,7 @@ export default function Home() {
                 className="font-buffalo"
                 style={{
                   fontSize: 52,
-                  marginBottom: 8,
+
                   color: "#faeee0",
                   textShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
                 }}

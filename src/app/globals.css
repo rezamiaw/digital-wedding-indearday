@@ -275,7 +275,7 @@ body {
     justify-content: center;
   }
   .heading-section {
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
   .couple-section .profile-circle {
     width: 140px !important;
@@ -283,10 +283,10 @@ body {
     margin-top: -20px !important;
   }
   .couple-section .side-text > div:first-child {
-    font-size: 18px !important;
+    font-size: 42px !important;
   }
   .couple-section .side-text > div:not(:first-child) {
-    font-size: 13px !important;
+    font-size: 18px !important;
   }
   .couple-section img[src*="bismillah.png"] {
     width: 80% !important;
@@ -416,7 +416,7 @@ body {
     margin-right: 25px !important;
   }
   .save-the-date__date {
-    font-size: 26px !important;
+    font-size: 20px !important;
     letter-spacing: 6px !important;
   }
   .save-the-date__time,
@@ -1136,5 +1136,12 @@ body {
   .footer-brand-animate,
   .footer-social-animate {
     animation-duration: 0.9s;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Make left description under Rania closer on mobile */
+  .couple-section .side-text:first-child .font-belleza {
+    margin-top: 0 !important;
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
@@ -441,9 +442,16 @@ export default function Home() {
       "gift-image-animate",
       "footer-brand-animate",
       "footer-social-animate",
+      // Landing animations
+      "wave-in",
+      "zoom-in",
+      "decor-left",
+      "decor-right",
     ];
 
     const isAnimClass = (token: string) => ANIM_CLASS_NAMES.includes(token);
+    const isFooter = (el: Element | null) =>
+      !!el && (el as HTMLElement).classList.contains("footer-section");
 
     const allAnimated = Array.from(
       document.querySelectorAll(ANIM_CLASS_NAMES.map((c) => `.${c}`).join(","))
@@ -459,6 +467,7 @@ export default function Home() {
     });
 
     const sectionSelectors = [
+      ".section-landing",
       ".save-the-date",
       ".section-couple",
       ".section-ayat",
@@ -480,11 +489,26 @@ export default function Home() {
         const anim = el.dataset.anim || "";
         if (anim) {
           anim.split(/\s+/).forEach((t) => t && el.classList.add(t));
-          // allow CSS selectors like .in-view
           el.classList.add("in-view");
-          // clear so it won't be re-added excessively
           delete el.dataset.anim;
         }
+      });
+    };
+
+    const reset = (section: HTMLElement) => {
+      if (isFooter(section)) return; // keep footer visible once shown
+      const targets = Array.from(
+        section.querySelectorAll(
+          ".in-view, " + ANIM_CLASS_NAMES.map((c) => `.${c}`).join(", ")
+        )
+      ) as HTMLElement[];
+      targets.forEach((el) => {
+        const tokens = Array.from(el.classList).filter(isAnimClass);
+        if (tokens.length > 0) {
+          el.dataset.anim = tokens.join(" ");
+        }
+        tokens.forEach((t) => el.classList.remove(t));
+        el.classList.remove("in-view");
       });
     };
 
@@ -493,6 +517,11 @@ export default function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.target instanceof HTMLElement) {
             activate(entry.target);
+          } else if (
+            !entry.isIntersecting &&
+            entry.target instanceof HTMLElement
+          ) {
+            reset(entry.target);
           }
         });
       },
@@ -576,6 +605,7 @@ export default function Home() {
       />
       {/* Landing Page */}
       <section
+        className="section-landing"
         style={{
           position: "relative",
           height: "100vh",
@@ -1200,7 +1230,7 @@ export default function Home() {
           }}
         >
           <div
-            className="curved-title-2 rsvp-title-animate"
+            className="curved-title-2 rsvp-title-animate rsvp-anim-step-1"
             id="method2"
             style={{ textAlign: "center", marginBottom: "30px" }}
           >
@@ -1217,7 +1247,7 @@ export default function Home() {
           </div>
 
           <p
-            className="rsvp-intro font-belleza rsvp-fade"
+            className="rsvp-intro font-belleza rsvp-fade rsvp-anim-step-2"
             style={{ fontSize: 20, color: "#000000", marginBottom: 28 }}
           >
             Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
@@ -1228,7 +1258,7 @@ export default function Home() {
 
           {/* FORM RSVP */}
           <form
-            className="rsvp-form font-belleza rsvp-fade"
+            className="rsvp-form font-belleza rsvp-fade rsvp-anim-step-3"
             onSubmit={(e) => {
               e.preventDefault();
               const form = new FormData(e.currentTarget);
@@ -1339,7 +1369,7 @@ export default function Home() {
 
             <div style={{ marginTop: 20, textAlign: "center" }}>
               <h1
-                className="rsvp-wishes-title rsvp-title-animate"
+                className="rsvp-wishes-title rsvp-title-animate rsvp-anim-step-4"
                 style={{
                   fontSize: 62,
                   fontFamily: "Times New Roman",
@@ -1353,7 +1383,7 @@ export default function Home() {
               {/* form ucapan */}
               <div>
                 <textarea
-                  className="rsvp-textarea rsvp-field-animate"
+                  className="rsvp-textarea rsvp-field-animate rsvp-anim-step-5"
                   placeholder="Tuliskan ucapan dan doa"
                   style={{
                     width: "100%",
@@ -1373,7 +1403,7 @@ export default function Home() {
               <div style={{ marginTop: 20 }}>
                 <button
                   type="submit"
-                  className="rsvp-submit rsvp-cta-animate"
+                  className="rsvp-submit rsvp-cta-animate rsvp-anim-step-6"
                   style={{
                     padding: "12px 18px",
                     borderRadius: 999,
@@ -1394,7 +1424,7 @@ export default function Home() {
               {/* history ucapan */}
               <div style={{ marginTop: 30 }}>
                 <h3
-                  className="history-ucapan-title font-buffalo rsvp-title-animate"
+                  className="history-ucapan-title font-buffalo rsvp-title-animate rsvp-anim-step-7"
                   style={{
                     fontSize: 80,
                     color: "#8b272e",
@@ -1408,7 +1438,7 @@ export default function Home() {
 
                 <div
                   ref={sliderRef}
-                  className="history-ucapan-container rsvp-history-animate"
+                  className="history-ucapan-container rsvp-history-animate rsvp-anim-step-8"
                   style={{
                     display: "flex",
                     overflowX: "auto",

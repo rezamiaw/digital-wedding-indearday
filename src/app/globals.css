@@ -622,6 +622,7 @@ body {
   .rsvp-container {
     max-width: 520px !important;
     padding: 0 14px !important;
+    margin-top: 15px !important;
   }
   .rsvp-form {
     gap: 12px !important;
@@ -1168,64 +1169,67 @@ body {
   }
 }
 
-/* Reduced motion: disable/simplify animations and transitions */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto !important;
+/* RSVP staggered steps */
+.rsvp-anim-step-1 {
+  animation-delay: 0.1s !important;
+}
+.rsvp-anim-step-2 {
+  animation-delay: 0.3s !important;
+}
+.rsvp-anim-step-3 {
+  animation-delay: 0.5s !important;
+}
+.rsvp-anim-step-4 {
+  animation-delay: 0.7s !important;
+}
+.rsvp-anim-step-5 {
+  animation-delay: 0.9s !important;
+}
+.rsvp-anim-step-6 {
+  animation-delay: 1.1s !important;
+}
+.rsvp-anim-step-7 {
+  animation-delay: 1.3s !important;
+}
+.rsvp-anim-step-8 {
+  animation-delay: 1.5s !important;
+}
+.rsvp-anim-step-9 {
+  animation-delay: 1.7s !important;
+}
+.rsvp-anim-step-10 {
+  animation-delay: 1.9s !important;
+}
+
+@media (max-width: 600px) {
+  .rsvp-anim-step-1 {
+    animation-delay: 0.05s !important;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .rsvp-anim-step-2 {
+    animation-delay: 0.2s !important;
   }
-  /* Ensure content is visible even if normally gated by data-anim */
-  [data-anim] {
-    opacity: 1 !important;
-    pointer-events: auto !important;
+  .rsvp-anim-step-3 {
+    animation-delay: 0.35s !important;
   }
-  /* Explicitly disable long-running decorative animations */
-  .love-bounce,
-  .save-date-love,
-  .image-slider-nav-button,
-  .image-slider-main,
-  .save-date-animate,
-  .save-date-details,
-  .save-date-date,
-  .save-date-time,
-  .save-date-venue,
-  .save-date-address,
-  .save-date-cta,
-  .save-date-countdown,
-  .slide-in-left,
-  .slide-in-right,
-  .bismillah-fade,
-  .heading-fade,
-  .figura-fade,
-  .figure-fade,
-  .ayat-fade,
-  .rsvp-title-animate,
-  .rsvp-fade,
-  .rsvp-field-animate,
-  .rsvp-cta-animate,
-  .rsvp-history-animate,
-  .gift-title-animate,
-  .gift-text-animate,
-  .gift-image-animate,
-  .footer-brand-animate,
-  .footer-social-animate {
-    animation: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    filter: none !important;
+  .rsvp-anim-step-4 {
+    animation-delay: 0.5s !important;
   }
-  /* Wallet hover already has its own reduced-motion rules, but ensure no transforms */
-  .wallet-cta,
-  .wallet-cta:hover,
-  .wallet-cta:active {
-    transform: none !important;
-    filter: none !important;
+  .rsvp-anim-step-5 {
+    animation-delay: 0.65s !important;
+  }
+  .rsvp-anim-step-6 {
+    animation-delay: 0.8s !important;
+  }
+  .rsvp-anim-step-7 {
+    animation-delay: 0.95s !important;
+  }
+  .rsvp-anim-step-8 {
+    animation-delay: 1.1s !important;
+  }
+  .rsvp-anim-step-9 {
+    animation-delay: 1.25s !important;
+  }
+  .rsvp-anim-step-10 {
+    animation-delay: 1.4s !important;
   }
 }

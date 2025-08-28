@@ -24,3 +24,1117 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Full viewport height fix on mobile */
+html,
+body {
+  height: 100%;
+}
+
+/* Hide scrollbar if you want a clean look (optional) */
+/* ::-webkit-scrollbar { display: none; } */
+
+/* Responsive decoration adjustments */
+.decor-left,
+.decor-right {
+  width: 12vw;
+  max-width: 160px;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.decor-left {
+  animation-name: slideInLeft;
+}
+
+.decor-right {
+  animation-name: slideInRight;
+}
+
+.zoom-in {
+  animation-duration: 1.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.zoom-in {
+  animation-name: zoomIn;
+}
+
+.wave-in {
+  animation-duration: 1.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.wave-in {
+  animation-name: waveIn;
+}
+
+/* Slide animations for decorative panels */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes waveIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Floating animation for image slider decorative elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Image slider responsive styles */
+@media (max-width: 900px) {
+  .image-slider-container {
+    max-width: 95% !important;
+    padding: 0 10px !important;
+  }
+
+  .image-slider-main {
+    height: 520px !important;
+  }
+
+  .image-slider-nav-button {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 24px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .image-slider-main {
+    height: 360px !important;
+  }
+
+  .image-slider-nav-button {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 18px !important;
+  }
+
+  .image-slider-dots {
+    gap: 8px !important;
+  }
+
+  .image-slider-counter {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: 72px !important;
+  }
+  .heading-our-gallery {
+    font-size: 62px !important;
+    letter-spacing: 10px !important;
+  }
+
+  .decor-left,
+  .decor-right {
+    width: 20vw;
+    max-width: 96px;
+    opacity: 0.9;
+  }
+
+  .hero-content h1 {
+    font-size: 24px !important;
+  }
+
+  .hero-content div[style*="font-size: 36px"] {
+    font-size: 24px !important;
+  }
+
+  .hero-content div[style*="font-size: 24px"] {
+    font-size: 18px !important;
+  }
+
+  .hero-content button {
+    width: 160px !important;
+    padding: 8px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Hover style for primary hero button */
+.hero-button:hover {
+  background-color: #8b272e !important;
+  color: #ffffff !important;
+  border-color: #8b272e !important;
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
+}
+
+/* Couple section responsive */
+.couple-section .couple-grid {
+  grid-template-columns: 1fr auto auto 1fr;
+}
+
+@media (max-width: 1200px) {
+  .couple-section .couple-grid {
+    grid-template-columns: 1fr auto auto 1fr;
+    gap: 16px;
+  }
+  .couple-section .profile-circle {
+    width: 180px !important;
+    height: 180px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .couple-section {
+    padding-top: 96px !important; /* clear absolute bismillah at top */
+  }
+  .couple-section img[src*="bismillah.png"] {
+    width: 70% !important;
+    max-width: 360px !important;
+    top: 8px !important;
+  }
+  .heading-section {
+    margin-top: 24px !important;
+    margin-bottom: 16px !important;
+  }
+  .couple-section .couple-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+  .couple-section .side-text {
+    text-align: center !important;
+    grid-column: 1 / -1;
+    margin-bottom: 16px;
+  }
+  .couple-section .profile-circle {
+    width: 160px !important;
+    height: 160px !important;
+    margin: 0 auto;
+  }
+  .couple-section .side-text > div:first-child {
+    font-size: 14px !important;
+  }
+  .couple-section .side-text > div:not(:first-child) {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .couple-section {
+    padding-top: 88px !important;
+    margin-top: 20px !important;
+  }
+  .couple-section .couple-grid {
+    gap: 16px;
+    justify-content: center;
+  }
+  .heading-section {
+    font-size: 16px !important;
+  }
+  .couple-section .profile-circle {
+    width: 140px !important;
+    height: 140px !important;
+    margin-top: -20px !important;
+  }
+  .couple-section .side-text > div:first-child {
+    font-size: 18px !important;
+  }
+  .couple-section .side-text > div:not(:first-child) {
+    font-size: 13px !important;
+  }
+  .couple-section img[src*="bismillah.png"] {
+    width: 80% !important;
+    max-width: 300px !important;
+    top: 8px !important;
+  }
+  .heading-section {
+    margin-top: 40px !important;
+    margin-bottom: 12px !important;
+  }
+  .couple-section img[src*="pita_kiri.png"] {
+    width: 100% !important;
+    max-width: 400px !important;
+    left: -120px !important;
+    bottom: -300px !important;
+  }
+  .couple-section img[src*="pita_kanan.png"] {
+    width: 100% !important;
+    max-width: 400px !important;
+    right: -150px !important;
+    bottom: -180px !important;
+  }
+  .couple-section img[src*="love.png"] {
+    width: 72px !important;
+    height: 72px !important;
+    top: 58% !important;
+  }
+  .couple-section {
+    padding: 24px !important;
+  }
+  .couple-section > div:first-child {
+    margin-bottom: 10px !important;
+  }
+  .couple-section > div:first-child > div:last-child {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+  .ayat-al-quran {
+    padding: 52px !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-ayat {
+    height: 50vh !important;
+    min-height: 50vh !important;
+  }
+}
+
+/* Save The Date responsive */
+.save-the-date__inner {
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+@media (max-width: 1024px) {
+  .save-the-date__word--save,
+  .save-the-date__word--date {
+    font-size: 120px !important;
+    top: 0 !important;
+  }
+  .save-the-date__word--the {
+    font-size: 56px !important;
+  }
+  .save-the-date__date {
+    font-size: 48px !important;
+    letter-spacing: 12px !important;
+  }
+  .save-the-date__time {
+    font-size: 64px !important;
+    letter-spacing: 8px !important;
+  }
+  .save-the-date__venue {
+    font-size: 64px !important;
+    letter-spacing: 8px !important;
+  }
+  .save-the-date__address {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .save-the-date {
+    height: auto !important;
+    padding: 60px 0 !important;
+  }
+  .save-the-date__word--save,
+  .save-the-date__word--date {
+    font-size: 84px !important;
+  }
+  .save-the-date__word--the {
+    font-size: 40px !important;
+    transform: rotate(-10deg) !important;
+  }
+  .save-the-date__date {
+    font-size: 34px !important;
+    letter-spacing: 8px !important;
+  }
+  .save-the-date__time,
+  .save-the-date__venue {
+    font-size: 46px !important;
+    letter-spacing: 6px !important;
+  }
+  .save-the-date__address {
+    font-size: 16px !important;
+  }
+  .save-the-date__cta {
+    width: 240px !important;
+    font-size: 20px !important;
+    padding: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 56px !important;
+  }
+  .save-the-date__word--save,
+  .save-the-date__word--date {
+    font-size: 82px !important;
+  }
+  .save-the-date__word--the {
+    font-size: 52px !important;
+    margin-right: 25px !important;
+  }
+  .save-the-date__date {
+    font-size: 26px !important;
+    letter-spacing: 6px !important;
+  }
+  .save-the-date__time,
+  .save-the-date__venue {
+    font-size: 34px !important;
+    letter-spacing: 4px !important;
+  }
+  .save-the-date__address {
+    font-size: 14px !important;
+  }
+  .save-the-date__cta {
+    width: 200px !important;
+    font-size: 18px !important;
+    padding: 10px !important;
+  }
+}
+
+/* Countdown responsive */
+.countdown {
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .countdown .countdown-item {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  .countdown .countdown-value {
+    font-size: 34px !important;
+  }
+  .countdown .countdown-label {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .countdown {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* 1 row */
+    justify-content: center !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px !important;
+    padding: 6px !important;
+  }
+  .countdown .countdown-item {
+    width: 72px !important;
+    height: 72px !important;
+    padding: 6px 6px !important;
+  }
+  .countdown .countdown-value {
+    font-size: 22px !important;
+  }
+  .countdown .countdown-label {
+    font-size: 10px !important;
+  }
+}
+
+@font-face {
+  font-family: "Buffalo";
+  src: url("/font/Buffalo.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.font-buffalo {
+  font-family: "Buffalo", cursive;
+}
+
+@font-face {
+  font-family: "Belleza";
+  src: url("/font/Belleza.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.font-belleza {
+  font-family: "Belleza", sans-serif;
+}
+
+@font-face {
+  font-family: "TheSeason";
+  src: url("/font/TheSeason.otf") format("opentype");
+  font-style: normal;
+  font-weight: 1000;
+  font-display: swap;
+}
+
+.font-theseason {
+  font-family: "TheSeason", sans-serif;
+}
+
+.curved-title-2 {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.curved-text {
+  font-size: 82px;
+  font-weight: bold;
+  fill: #faeee0;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Mobile responsive indicator */
+.mobile-indicator {
+  display: none !important;
+}
+
+/* History ucapan responsive styles */
+@media (max-width: 900px) {
+  .history-ucapan-container {
+    max-width: 95% !important;
+    padding: 0 10px !important;
+  }
+
+  .history-ucapan-card {
+    min-width: 260px !important;
+    max-width: 300px !important;
+  }
+
+  .mobile-indicator {
+    display: block !important;
+  }
+}
+
+/* RSVP responsive */
+/* Ensure inputs never overflow width and render consistently */
+.rsvp-input,
+.rsvp-textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+/* Wedding Gift responsive */
+@media (max-width: 900px) {
+  .wedding-gift-container {
+    padding: 0 40px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .wedding-gift-section {
+    min-height: auto !important;
+    padding: 40px 0 !important;
+  }
+  .wedding-gift-container {
+    padding: 0 16px !important;
+  }
+  .wedding-gift-container h1 {
+    font-size: 34px !important;
+    margin-bottom: 16px !important;
+  }
+  .wedding-gift-container .font-belleza,
+  .gift-text {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    display: block !important;
+  }
+  .wedding-gift-container img {
+    max-width: 100px !important;
+    margin-top: 20px !important;
+  }
+}
+@media (max-width: 900px) {
+  .rsvp-section {
+    padding: 40px 0 !important;
+    min-height: auto !important;
+  }
+  .rsvp-container {
+    max-width: 720px !important;
+    padding: 0 16px !important;
+  }
+  .rsvp-intro {
+    font-size: 18px !important;
+  }
+  .rsvp-wishes-title {
+    font-size: 46px !important;
+    letter-spacing: 6px !important;
+  }
+  .rsvp-textarea {
+    height: 240px !important;
+    font-size: 20px !important;
+  }
+  .rsvp-submit {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .rsvp-section {
+    padding: 32px 0 !important;
+  }
+  .rsvp-container {
+    max-width: 520px !important;
+    padding: 0 14px !important;
+  }
+  .rsvp-form {
+    gap: 12px !important;
+  }
+  .rsvp-intro {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 20px !important;
+  }
+  .rsvp-input {
+    padding: 10px 12px !important;
+    font-size: 16px !important; /* prevent mobile zoom */
+  }
+  .rsvp-fieldset {
+    padding: 10px !important;
+  }
+  .rsvp-wishes-title {
+    font-size: 34px !important;
+    letter-spacing: 4px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .rsvp-textarea {
+    height: 180px !important;
+    font-size: 16px !important; /* prevent mobile zoom */
+    margin-top: 12px !important;
+  }
+  .rsvp-submit {
+    width: 100% !important;
+    display: block !important;
+    margin: 10px auto !important;
+    font-size: 16px !important;
+    padding: 10px 16px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .history-ucapan-card {
+    min-width: 240px !important;
+    max-width: 280px !important;
+    padding: 15px !important;
+  }
+
+  .history-ucapan-container {
+    gap: 12px !important;
+    padding: 12px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* center cards horizontally */
+    overflow-x: hidden !important;
+    max-height: 540px !important; /* ~3 cards visible */
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .history-ucapan-title {
+    font-size: 42px !important;
+    margin-bottom: 15px !important;
+  }
+
+  .history-ucapan-scroll-indicator {
+    font-size: 12px !important;
+    margin-top: 10px !important;
+  }
+}
+
+/* Prevent card/text overflow on very small screens */
+@media (max-width: 600px) {
+  .history-ucapan-card {
+    width: 92% !important;
+    max-width: 380px !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    margin: 0 auto !important; /* center card */
+  }
+}
+
+/* Hide elements until their animation is activated */
+[data-anim] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Footer responsive */
+@media (max-width: 900px) {
+  footer {
+    padding: 16px 0 !important;
+  }
+  footer > div:first-child {
+    gap: 8px !important;
+  }
+  footer p.font-theseason {
+    font-size: 42px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 14px 0 !important;
+  }
+  footer > div:first-child {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  footer img[alt="footer"] {
+    width: 60px !important;
+  }
+  footer p.font-theseason {
+    font-size: 32px !important;
+    margin-left: 0 !important;
+  }
+  footer > div:last-child {
+    gap: 8px !important;
+  }
+  footer > div:last-child img[alt="instagram"] {
+    width: 26px !important;
+    height: 24px !important;
+  }
+  footer > div:last-child p.font-belleza {
+    font-size: 16px !important;
+    margin-left: -2px !important;
+  }
+}
+
+/* Slide in from left animation for couple section */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 1.2s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+/* Slide in from right animation for couple section */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-right {
+  animation: slideInFromRight 1.2s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Love icon bounce animation */
+@keyframes loveBounce {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.love-bounce {
+  animation: loveBounce 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Bismillah and heading fade animations */
+@keyframes bismillahFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.bismillah-fade {
+  animation: bismillahFade 1.5s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+@keyframes headingFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading-fade {
+  animation: headingFade 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+/* Ayat Al Quran animations */
+@keyframes ayatFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ayat-fade {
+  animation: ayatFade 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+@keyframes figureFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.figure-fade {
+  animation: figureFade 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+/* Save The Date animations */
+@keyframes saveDateFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes saveDateLoveFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(10deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(15deg) scale(1.1);
+  }
+}
+
+.save-date-animate {
+  animation: saveDateFadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.save-date-animate:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.save-date-animate:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.save-date-animate:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.save-date-details {
+  animation: saveDateFadeIn 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+.save-date-date {
+  animation: saveDateFadeIn 1s ease-out forwards;
+  animation-delay: 1s;
+  opacity: 0;
+}
+
+.save-date-time {
+  animation: saveDateFadeIn 1s ease-out forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+.save-date-venue {
+  animation: saveDateFadeIn 1s ease-out forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
+}
+
+.save-date-address {
+  animation: saveDateFadeIn 1s ease-out forwards;
+  animation-delay: 1.6s;
+  opacity: 0;
+}
+
+.save-date-cta {
+  animation: saveDateFadeIn 1s ease-out forwards;
+  animation-delay: 1.8s;
+  opacity: 0;
+}
+
+.save-date-countdown {
+  animation: saveDateFadeIn 1s ease-out forwards;
+  animation-delay: 2s;
+  opacity: 0;
+}
+
+.save-date-love {
+  animation: saveDateLoveFloat 3s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+.our-gallery-fade {
+  animation: ourGalleryFade 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+@keyframes ourGalleryFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RSVP animations */
+@keyframes rsvpFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rsvpFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rsvp-title-animate {
+  animation: rsvpFadeUp 1s ease-out forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.rsvp-fade {
+  animation: rsvpFadeUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.rsvp-field-animate {
+  animation: rsvpFadeUp 1s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.rsvp-cta-animate {
+  animation: rsvpFadeUp 1s ease-out forwards;
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+.rsvp-history-animate {
+  animation: rsvpFadeIn 1s ease-out forwards;
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .rsvp-title-animate {
+    animation-duration: 0.9s;
+  }
+  .rsvp-fade {
+    animation-duration: 0.9s;
+  }
+  .rsvp-field-animate {
+    animation-duration: 0.9s;
+  }
+  .rsvp-cta-animate {
+    animation-duration: 0.9s;
+  }
+  .rsvp-history-animate {
+    animation-duration: 0.9s;
+  }
+}
+
+/* Wedding Gift animations */
+@keyframes giftTitleSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes giftTextFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes giftImagePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gift-title-animate {
+  animation: giftTitleSlide 1s ease-out forwards;
+  opacity: 0;
+}
+.gift-text-animate {
+  animation: giftTextFade 1s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+.gift-image-animate {
+  animation: giftImagePop 1s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .gift-title-animate,
+  .gift-text-animate,
+  .gift-image-animate {
+    animation-duration: 0.9s;
+  }
+}
+
+/* Footer animations */
+@keyframes footerBrandSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes footerSocialFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-brand-animate {
+  animation: footerBrandSlide 1s ease-out forwards;
+  opacity: 0;
+}
+.footer-social-animate {
+  animation: footerSocialFade 1s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .footer-brand-animate,
+  .footer-social-animate {
+    animation-duration: 0.9s;
+  }
+}

@@ -407,6 +407,10 @@ export default function Home() {
   ]);
   const sliderRef = useRef(null);
   const [showWalletPopup, setShowWalletPopup] = useState(false);
+  const coupleSectionRef = useRef<HTMLElement | null>(null);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Trigger animations only when section becomes active
   useEffect(() => {
@@ -492,61 +496,84 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -20% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
     );
 
     sections.forEach((sec) => io.observe(sec));
 
-    // Immediately activate sections already in view on mount (helps mobile small viewports)
-    sections.forEach((sec) => {
-      const rect = sec.getBoundingClientRect();
+    const tryActivateVisible = () => {
       const vh = window.innerHeight || document.documentElement.clientHeight;
-      if (rect.top < vh * 0.8 && rect.bottom > 0) {
-        activate(sec);
-      }
-    });
+      sections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < vh * 0.95 && rect.bottom > 0) {
+          activate(sec);
+        }
+      });
+    };
 
-    return () => io.disconnect();
+    // Immediately activate sections already in view on mount (helps small viewports)
+    tryActivateVisible();
+
+    // Fallback: re-check on scroll/resize (passive)
+    window.addEventListener("scroll", tryActivateVisible, { passive: true });
+    window.addEventListener("resize", tryActivateVisible);
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", tryActivateVisible);
+      window.removeEventListener("resize", tryActivateVisible);
+    };
   }, []);
 
-  // format waktu singkat
-  const fmt = (d: Date) =>
-    new Date(d).toLocaleString("id-ID", {
-      day: "2-digit",
-      month: "short",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-  const maxIndex = Math.max(0, ucapanList.length - 1);
-
-  const goTo = (idx: number) => {
-    const clamped = Math.max(0, Math.min(idx, maxIndex));
-    // setCurrent(clamped); // This line was removed as per the edit hint
-    // scroll ke kartu aktif
-    const wrap = sliderRef.current;
-    if (wrap) {
-      const card = (wrap as HTMLElement).querySelector(
-        `[data-index="${clamped}"]`
-      );
-      if (card) {
-        card.scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest",
-        });
+  const handleUnlock = () => {
+    setIsUnlocked(true);
+    // play music on user gesture after unlock
+    try {
+      if (audioRef.current) {
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {});
       }
-    }
+    } catch {}
+    // smooth scroll to couple section after unlock
+    requestAnimationFrame(() => {
+      const el = coupleSectionRef.current;
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  };
+
+  const togglePlayback = async () => {
+    if (!audioRef.current) return;
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch {}
   };
 
   return (
     <main
       style={{
         height: "100vh",
-        overflowY: "scroll",
+        overflowY: isUnlocked ? "scroll" : "hidden",
         // scrollSnapType: "y mandatory",
       }}
     >
+      {/* hidden audio element */}
+      <audio
+        ref={audioRef}
+        src="/songs/song.mp3"
+        preload="auto"
+        loop
+        style={{ display: "none" }}
+      />
       {/* Landing Page */}
       <section
         style={{
@@ -659,6 +686,7 @@ export default function Home() {
               marginTop: 20,
               border: "2px solid #8b272e",
             }}
+            onClick={handleUnlock}
           >
             Buka Undangan
           </button>
@@ -668,6 +696,7 @@ export default function Home() {
       {/* Nama Mempelai*/}
       <section
         className="section-couple"
+        ref={coupleSectionRef}
         style={{
           minHeight: "100vh",
           scrollSnapAlign: "start",
@@ -1490,7 +1519,7 @@ export default function Home() {
             }}
           >
             <Image
-              className="gift-image-animate"
+              className="gift-image-animate wallet-cta"
               src="/images/wallet.png"
               alt="e-wallet"
               width={200}
@@ -1564,6 +1593,40 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      {/* Floating Music Control */}
+      <div
+        style={{
+          position: "fixed",
+          left: 16,
+          bottom: 16,
+          zIndex: 1000,
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+        }}
+      >
+        <button
+          onClick={togglePlayback}
+          aria-label={isPlaying ? "Pause music" : "Play music"}
+          style={{
+            width: 48,
+            height: 48,
+            borderRadius: "50%",
+            border: "2px solid #8b272e",
+            background: "#faeee0",
+            color: "#8b272e",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
+            fontSize: 22,
+          }}
+        >
+          {isPlaying ? "⏸" : "▶"}
+        </button>
+      </div>
 
       {/* E-Wallet Popup */}
       {showWalletPopup && (

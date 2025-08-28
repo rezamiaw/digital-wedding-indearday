@@ -1145,3 +1145,87 @@ body {
     margin-top: 0 !important;
   }
 }
+
+/* Wallet hover animation */
+.wallet-cta {
+  transition: transform 200ms ease, filter 200ms ease;
+  will-change: transform;
+}
+.wallet-cta:hover {
+  transform: scale(1.06) rotate(-1.5deg);
+  filter: drop-shadow(0 10px 24px rgba(184, 50, 16, 0.781));
+}
+.wallet-cta:active {
+  transform: scale(0.96);
+}
+@media (prefers-reduced-motion: reduce) {
+  .wallet-cta,
+  .wallet-cta:hover,
+  .wallet-cta:active {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Reduced motion: disable/simplify animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Ensure content is visible even if normally gated by data-anim */
+  [data-anim] {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  /* Explicitly disable long-running decorative animations */
+  .love-bounce,
+  .save-date-love,
+  .image-slider-nav-button,
+  .image-slider-main,
+  .save-date-animate,
+  .save-date-details,
+  .save-date-date,
+  .save-date-time,
+  .save-date-venue,
+  .save-date-address,
+  .save-date-cta,
+  .save-date-countdown,
+  .slide-in-left,
+  .slide-in-right,
+  .bismillah-fade,
+  .heading-fade,
+  .figura-fade,
+  .figure-fade,
+  .ayat-fade,
+  .rsvp-title-animate,
+  .rsvp-fade,
+  .rsvp-field-animate,
+  .rsvp-cta-animate,
+  .rsvp-history-animate,
+  .gift-title-animate,
+  .gift-text-animate,
+  .gift-image-animate,
+  .footer-brand-animate,
+  .footer-social-animate {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  /* Wallet hover already has its own reduced-motion rules, but ensure no transforms */
+  .wallet-cta,
+  .wallet-cta:hover,
+  .wallet-cta:active {
+    transform: none !important;
+    filter: none !important;
+  }
+}

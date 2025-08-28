@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
+import Image from "next/image";
 
 function Countdown({ target }: { target: string }) {
   const targetTime = useMemo(() => new Date(target).getTime(), [target]);
@@ -105,10 +106,7 @@ function ImageSlider() {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Array gambar untuk gallery (Anda bisa mengganti dengan foto-foto yang sebenarnya)
-  const images = [
-    "/images/image-1.jpg", // Contoh menggunakan gambar yang sudah ada
-    "/images/image-2.jpg",
-  ];
+  const images = ["/images/image-1.jpg", "/images/image-2.jpg"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -205,16 +203,20 @@ function ImageSlider() {
               zIndex: 2,
             }}
           >
-            <img
-              src={image}
-              alt={`Gallery ${index + 1}`}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                filter: "brightness(1.05) contrast(1.1)",
-              }}
-            />
+            <div
+              style={{ position: "relative", width: "100%", height: "100%" }}
+            >
+              <Image
+                src={image}
+                alt={`Gallery ${index + 1}`}
+                fill
+                style={{
+                  objectFit: "cover",
+                  filter: "brightness(1.05) contrast(1.1)",
+                }}
+                priority={index === 0}
+              />
+            </div>
             {/* Overlay gradient */}
             <div
               style={{
@@ -370,7 +372,7 @@ function ImageSlider() {
 }
 
 export default function Home() {
-  const [ucapanList, setUcapanList] = useState([
+  const [ucapanList] = useState([
     // contoh data awal (opsional)
     {
       id: 1,
@@ -403,8 +405,6 @@ export default function Home() {
       waktu: new Date(),
     },
   ]);
-  const [textUcapan, setTextUcapan] = useState("");
-  const [current, setCurrent] = useState(0);
   const sliderRef = useRef(null);
   const [showWalletPopup, setShowWalletPopup] = useState(false);
 
@@ -513,7 +513,7 @@ export default function Home() {
 
   const goTo = (idx: number) => {
     const clamped = Math.max(0, Math.min(idx, maxIndex));
-    setCurrent(clamped);
+    // setCurrent(clamped); // This line was removed as per the edit hint
     // scroll ke kartu aktif
     const wrap = sliderRef.current;
     if (wrap) {
@@ -976,21 +976,23 @@ export default function Home() {
                 display: "inline-block",
               }}
             >
-              <img
+              <Image
                 src="/images/love.png"
                 alt="Love decor"
                 className="save-date-love"
+                width={120}
+                height={120}
                 style={{
                   position: "absolute",
                   left: "5%",
                   top: "35%",
                   transform: "translate(-50%, -50%)",
-                  width: 120,
-                  height: "auto",
                   zIndex: 0,
                   pointerEvents: "none",
                   filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.15))",
                   rotate: "10deg",
+                  height: "auto",
+                  width: "auto",
                 }}
               />
               <span style={{ position: "relative", zIndex: 1 }}>Save</span>
@@ -1416,7 +1418,7 @@ export default function Home() {
                           fontFamily: "Times New Roman",
                         }}
                       >
-                        "{ucapan.isi}"
+                        {ucapan.isi}
                       </p>
                     </div>
                   ))}
@@ -1478,22 +1480,25 @@ export default function Home() {
               marginTop: 20,
             }}
           >
-            <img
+            <Image
               className="gift-image-animate"
               src="/images/wallet.png"
               alt="e-wallet"
+              width={200}
+              height={200}
               style={{
                 cursor: "pointer",
                 transition: "transform 0.3s ease",
-                maxWidth: "300px",
                 height: "auto",
                 marginTop: 40,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
+                (e.currentTarget as HTMLImageElement).style.transform =
+                  "scale(1.05)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
+                (e.currentTarget as HTMLImageElement).style.transform =
+                  "scale(1)";
               }}
               onClick={() => setShowWalletPopup(true)}
             />
@@ -1519,7 +1524,7 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <img src="/images/logo.png" alt="footer" style={{ width: 100 }} />
+          <Image src="/images/logo.png" alt="footer" width={100} height={100} />
           <p
             className="font-theseason"
             style={{ fontSize: 54, fontWeight: 600, marginLeft: 10 }}
@@ -1531,10 +1536,11 @@ export default function Home() {
           className="footer-social-animate"
           style={{ display: "flex", justifyContent: "center" }}
         >
-          <img
+          <Image
             src="/images/instagram.png"
             alt="instagram"
-            style={{ width: 30 }}
+            width={30}
+            height={30}
           />
           <p
             className="font-belleza"

@@ -528,6 +528,21 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
+/* Prevent SVG RSVP title from being clipped on iOS Safari */
+.curved-title-2 svg {
+  overflow: visible !important;
+}
+
+@media (max-width: 600px) {
+  .curved-title-2 svg {
+    height: 120px !important; /* give more vertical room for curve */
+    width: 100% !important;
+  }
+  .curved-text {
+    font-size: 64px !important; /* slightly smaller to avoid cutoff */
+  }
+}
+
 /* Mobile responsive indicator */
 .mobile-indicator {
   display: none !important;
